@@ -9,8 +9,7 @@ module Newil86
           !film['country'].nil? && film['country'].split(',').length >= 2 && !film['rating_kinopoisk'].to_f.zero?
         end
 
-        rating_sum = filtered_films.map { |film| film['rating_kinopoisk'].to_f }
-                            .reduce(:+)
+        rating_sum = filtered_films.map { |film| film['rating_kinopoisk'].to_f }.reduce(:+)
         rating_sum / filtered_films.length
       end
 
@@ -18,8 +17,7 @@ module Newil86
         letter = 'и'
 
         selected = films.select do |item|
-          item['rating_kinopoisk'] &&
-              item['rating_kinopoisk'].to_f >= threshold
+          item['rating_kinopoisk'] && item['rating_kinopoisk'].to_f >= threshold
         end
         selected.map { |item| item['name'].count(letter) }.reduce(:+)
       end
